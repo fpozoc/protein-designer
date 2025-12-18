@@ -1,29 +1,29 @@
 import { showSubmittedData } from '@/lib/show-submitted-data'
 import { ConfirmDialog } from '@/components/confirm-dialog'
-import { TasksImportDialog } from './tasks-import-dialog'
-import { TasksMutateDrawer } from './tasks-mutate-drawer'
-import { useTasks } from './tasks-provider'
+import { RunsImportDialog } from './runs-import-dialog'
+import { RunsMutateDrawer } from './runs-mutate-drawer'
+import { useRuns } from './runs-provider'
 
-export function TasksDialogs() {
-  const { open, setOpen, currentRow, setCurrentRow } = useTasks()
+export function RunsDialogs() {
+  const { open, setOpen, currentRow, setCurrentRow } = useRuns()
   return (
     <>
-      <TasksMutateDrawer
-        key='task-create'
+      <RunsMutateDrawer
+        key='run-create'
         open={open === 'create'}
         onOpenChange={() => setOpen('create')}
       />
 
-      <TasksImportDialog
-        key='tasks-import'
+      <RunsImportDialog
+        key='runs-import'
         open={open === 'import'}
         onOpenChange={() => setOpen('import')}
       />
 
       {currentRow && (
         <>
-          <TasksMutateDrawer
-            key={`task-update-${currentRow.id}`}
+          <RunsMutateDrawer
+            key={`run-update-${currentRow.id}`}
             open={open === 'update'}
             onOpenChange={() => {
               setOpen('update')
@@ -35,7 +35,7 @@ export function TasksDialogs() {
           />
 
           <ConfirmDialog
-            key='task-delete'
+            key='run-delete'
             destructive
             open={open === 'delete'}
             onOpenChange={() => {
@@ -51,14 +51,14 @@ export function TasksDialogs() {
               }, 500)
               showSubmittedData(
                 currentRow,
-                'The following task has been deleted:'
+                'The following run has been deleted:'
               )
             }}
             className='max-w-md'
-            title={`Delete this task: ${currentRow.id} ?`}
+            title={`Delete this run: ${currentRow.id} ?`}
             desc={
               <>
-                You are about to delete a task with the ID{' '}
+                You are about to delete a run with the ID{' '}
                 <strong>{currentRow.id}</strong>. <br />
                 This action cannot be undone.
               </>

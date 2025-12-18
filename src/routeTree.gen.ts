@@ -26,10 +26,10 @@ import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_aut
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
-import { Route as AuthenticatedToolsIndexRouteImport } from './routes/_authenticated/tools/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedRunsIndexRouteImport } from './routes/_authenticated/runs/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
+import { Route as AuthenticatedDesignerIndexRouteImport } from './routes/_authenticated/designer/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as ClerkAuthenticatedUserManagementRouteImport } from './routes/clerk/_authenticated/user-management'
 import { Route as ClerkauthSignUpRouteImport } from './routes/clerk/(auth)/sign-up'
@@ -123,11 +123,6 @@ const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   path: '/users/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
-const AuthenticatedToolsIndexRoute = AuthenticatedToolsIndexRouteImport.update({
-  id: '/tools/',
-  path: '/tools/',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
     id: '/',
@@ -143,6 +138,12 @@ const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
     path: '/help-center/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedDesignerIndexRoute =
+  AuthenticatedDesignerIndexRouteImport.update({
+    id: '/designer/',
+    path: '/designer/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
@@ -220,10 +221,10 @@ export interface FileRoutesByFullPath {
   '/clerk/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/designer': typeof AuthenticatedDesignerIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/runs': typeof AuthenticatedRunsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/tools': typeof AuthenticatedToolsIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesByTo {
@@ -248,10 +249,10 @@ export interface FileRoutesByTo {
   '/clerk/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
+  '/designer': typeof AuthenticatedDesignerIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/runs': typeof AuthenticatedRunsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
-  '/tools': typeof AuthenticatedToolsIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -281,10 +282,10 @@ export interface FileRoutesById {
   '/clerk/(auth)/sign-up': typeof ClerkauthSignUpRoute
   '/clerk/_authenticated/user-management': typeof ClerkAuthenticatedUserManagementRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
+  '/_authenticated/designer/': typeof AuthenticatedDesignerIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/runs/': typeof AuthenticatedRunsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/_authenticated/tools/': typeof AuthenticatedToolsIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -312,10 +313,10 @@ export interface FileRouteTypes {
     | '/clerk/sign-up'
     | '/clerk/user-management'
     | '/chats'
+    | '/designer'
     | '/help-center'
     | '/runs'
     | '/settings/'
-    | '/tools'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -340,10 +341,10 @@ export interface FileRouteTypes {
     | '/clerk/sign-up'
     | '/clerk/user-management'
     | '/chats'
+    | '/designer'
     | '/help-center'
     | '/runs'
     | '/settings'
-    | '/tools'
     | '/users'
   id:
     | '__root__'
@@ -372,10 +373,10 @@ export interface FileRouteTypes {
     | '/clerk/(auth)/sign-up'
     | '/clerk/_authenticated/user-management'
     | '/_authenticated/chats/'
+    | '/_authenticated/designer/'
     | '/_authenticated/help-center/'
     | '/_authenticated/runs/'
     | '/_authenticated/settings/'
-    | '/_authenticated/tools/'
     | '/_authenticated/users/'
   fileRoutesById: FileRoutesById
 }
@@ -515,13 +516,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedUsersIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
-    '/_authenticated/tools/': {
-      id: '/_authenticated/tools/'
-      path: '/tools'
-      fullPath: '/tools'
-      preLoaderRoute: typeof AuthenticatedToolsIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
     '/_authenticated/settings/': {
       id: '/_authenticated/settings/'
       path: '/'
@@ -541,6 +535,13 @@ declare module '@tanstack/react-router' {
       path: '/help-center'
       fullPath: '/help-center'
       preLoaderRoute: typeof AuthenticatedHelpCenterIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/designer/': {
+      id: '/_authenticated/designer/'
+      path: '/designer'
+      fullPath: '/designer'
+      preLoaderRoute: typeof AuthenticatedDesignerIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/chats/': {
@@ -637,9 +638,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
+  AuthenticatedDesignerIndexRoute: typeof AuthenticatedDesignerIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedRunsIndexRoute: typeof AuthenticatedRunsIndexRoute
-  AuthenticatedToolsIndexRoute: typeof AuthenticatedToolsIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
 
@@ -648,9 +649,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
+  AuthenticatedDesignerIndexRoute: AuthenticatedDesignerIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedRunsIndexRoute: AuthenticatedRunsIndexRoute,
-  AuthenticatedToolsIndexRoute: AuthenticatedToolsIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }
 
