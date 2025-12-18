@@ -53,18 +53,18 @@ export const sidebarData: SidebarData = {
       title: 'General',
       items: [
         {
-          title: 'Dashboard',
+          title: 'Designer',
           url: '/',
           icon: LayoutDashboard,
         },
         {
-          title: 'Tasks',
-          url: '/tasks',
+          title: 'Runs',
+          url: '/runs',
           icon: ListTodo,
         },
         {
-          title: 'Apps',
-          url: '/apps',
+          title: 'Infrastructure',
+          url: '/tools',
           icon: Package,
         },
         {
