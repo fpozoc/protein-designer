@@ -1,0 +1,34 @@
+name: Auto PR
+
+on:
+    push:
+        branches:
+            - "feature/*"
+            - "fix/*"
+
+permissions:
+    contents: write
+    pull-requests: write
+
+jobs:
+    create-pr:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Create Pull Request
+              env:
+                  GH_TOKEN: ${{ github.token }}
+              run: |
+                  # Check if PR exists
+                  if gh pr view --json url > /dev/null 2>&1; then
+                    echo "PR already exists"
+                  else
+                    echo "Creating PR..."
+                    gh pr create \
+                      --base main \
+                      --head "${{ github.ref_name }}" \
+                      --fill \
+                      --assignee "${{ github.actor }}"
+                  fi
