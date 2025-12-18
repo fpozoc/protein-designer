@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { ConfirmDialog } from '@/components/confirm-dialog'
 
-type TaskMultiDeleteDialogProps<TData> = {
+type RunMultiDeleteDialogProps<TData> = {
   open: boolean
   onOpenChange: (open: boolean) => void
   table: Table<TData>
@@ -18,11 +18,11 @@ type TaskMultiDeleteDialogProps<TData> = {
 
 const CONFIRM_WORD = 'DELETE'
 
-export function TasksMultiDeleteDialog<TData>({
+export function RunsMultiDeleteDialog<TData>({
   open,
   onOpenChange,
   table,
-}: TaskMultiDeleteDialogProps<TData>) {
+}: RunMultiDeleteDialogProps<TData>) {
   const [value, setValue] = useState('')
 
   const selectedRows = table.getFilteredSelectedRowModel().rows
@@ -36,12 +36,12 @@ export function TasksMultiDeleteDialog<TData>({
     onOpenChange(false)
 
     toast.promise(sleep(2000), {
-      loading: 'Deleting tasks...',
+      loading: 'Deleting runs...',
       success: () => {
         setValue('')
         table.resetRowSelection()
         return `Deleted ${selectedRows.length} ${
-          selectedRows.length > 1 ? 'tasks' : 'task'
+          selectedRows.length > 1 ? 'runs' : 'run'
         }`
       },
       error: 'Error',
@@ -61,13 +61,13 @@ export function TasksMultiDeleteDialog<TData>({
             size={18}
           />{' '}
           Delete {selectedRows.length}{' '}
-          {selectedRows.length > 1 ? 'tasks' : 'task'}
+          {selectedRows.length > 1 ? 'runs' : 'run'}
         </span>
       }
       desc={
         <div className='space-y-4'>
           <p className='mb-2'>
-            Are you sure you want to delete the selected tasks? <br />
+            Are you sure you want to delete the selected runs? <br />
             This action cannot be undone.
           </p>
 

@@ -1,77 +1,56 @@
 import {
-  ArrowDown,
-  ArrowRight,
-  ArrowUp,
-  Circle,
   CheckCircle,
-  AlertCircle,
   Timer,
   HelpCircle,
-  CircleOff,
+  XCircle,
+  Cpu,
+  Dna,
+  FlaskConical,
+  Atom,
 } from 'lucide-react'
 
-export const labels = [
+export const models = [
   {
-    value: 'bug',
-    label: 'Bug',
+    value: 'rfdiffusion',
+    label: 'RFdiffusion',
+    icon: Dna,
   },
   {
-    value: 'feature',
-    label: 'Feature',
+    value: 'proteinmpnn',
+    label: 'ProteinMPNN',
+    icon: Atom,
   },
   {
-    value: 'documentation',
-    label: 'Documentation',
+    value: 'alphafold',
+    label: 'AlphaFold',
+    icon: FlaskConical,
+  },
+  {
+    value: 'ligandmpnn',
+    label: 'LigandMPNN',
+    icon: Cpu,
   },
 ]
 
 export const statuses = [
   {
-    label: 'Backlog',
-    value: 'backlog' as const,
+    label: 'Queued',
+    value: 'queued',
     icon: HelpCircle,
   },
   {
-    label: 'Todo',
-    value: 'todo' as const,
-    icon: Circle,
-  },
-  {
-    label: 'In Progress',
-    value: 'in progress' as const,
+    label: 'Running',
+    value: 'running',
     icon: Timer,
   },
   {
-    label: 'Done',
-    value: 'done' as const,
+    label: 'Completed',
+    value: 'completed',
     icon: CheckCircle,
   },
   {
-    label: 'Canceled',
-    value: 'canceled' as const,
-    icon: CircleOff,
-  },
-]
-
-export const priorities = [
-  {
-    label: 'Low',
-    value: 'low' as const,
-    icon: ArrowDown,
-  },
-  {
-    label: 'Medium',
-    value: 'medium' as const,
-    icon: ArrowRight,
-  },
-  {
-    label: 'High',
-    value: 'high' as const,
-    icon: ArrowUp,
-  },
-  {
-    label: 'Critical',
-    value: 'critical' as const,
-    icon: AlertCircle,
+    label: 'Failed',
+    value: 'failed',
+    icon: XCircle,
   },
 ]

@@ -19,7 +19,7 @@ import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
 import { apps } from './data/apps'
 
-const route = getRouteApi('/_authenticated/tools/')
+const route = getRouteApi('/_authenticated/designer/')
 
 type AppType = 'all' | 'connected' | 'notConnected'
 
@@ -113,7 +113,7 @@ export function Apps() {
             />
             <Select value={appType} onValueChange={handleTypeChange}>
               <SelectTrigger className='w-36'>
-                <SelectValue>{appText.get(appType)}</SelectValue>
+                <SelectValue>{appText.get(appType as AppType)}</SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value='all'>All Apps</SelectItem>
